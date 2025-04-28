@@ -5,7 +5,7 @@
 
 A collection of modern RL algorithms implemented in PyTorch, designed for clarity and educational purposes. Each implementation includes mathematical formulations, testing suites, and practical examples.
 
-### **Implemented Algorithms**:
+### 📌**Implemented Algorithms**
   - Q-Learning (Tabular)
   - SARSA (Tabular)
   - Deep Q-Network (DQN)
@@ -15,15 +15,14 @@ A collection of modern RL algorithms implemented in PyTorch, designed for clarit
   - Direct Preference Optimization (DPO)
   - Trust Region Policy Optimization (TRPO)
 
-### **Key Components**:
+### 📌**Key Components**
   - Modular agent architectures
   - Custom environments (GridWorld, Continuous Control)
   - Comprehensive test suite
-  - Jupyter notebook examples
   - Hyperparameter configurations
   - PyTorch-optimized implementations
 
-## Installation
+## 📌Installation
 
 1. Clone the repository:
 ```bash
@@ -35,7 +34,7 @@ cd RLab
 ```
 pip install -r requirements.txt
 ```
-### Requirements
+### 📌Requirements
 
 - Python 3.8+
 
@@ -47,7 +46,7 @@ pip install -r requirements.txt
 
 - Matplotlib
 
-## Usage
+## 📌Usage
 ### Basic Q-Learning Example
 ```
 from agents.q_learning import QLearningAgent
@@ -77,7 +76,7 @@ agent = PPOAgent(state_dim=4, action_dim=2)
 
 # See examples/cartpole_ppo.ipynb for full training loop
 ```
-## Key Concepts
+## 📌Key Concepts
 ### Algorithm Selection Guide
 
 | Algorithm       | Best For                          | Action Space   | Training Stability | Key Features                         |
@@ -91,7 +90,7 @@ agent = PPOAgent(state_dim=4, action_dim=2)
 | **DPO**         | Human preference alignment        | Both           | High               | Direct optimization, no reward model |
 | **TRPO**        | Safe policy updates               | Continuous     | Very High          | KL constraints, guaranteed monotonic |
 
-## Contributing  
+## 📌Contributing  
 Contributions are welcome! Please follow these steps:
 
 - Fork the repository
@@ -104,4 +103,10 @@ Contributions are welcome! Please follow these steps:
 
 - Open a Pull Request
 
-## Acknowledgments
+## 📌Acknowledgments
+- [OpenAI Gym/Gymnasium documentation](https://github.com/openai/gym)
+- [PyTorch documentation](https://pytorch.org/docs/stable/index.html)
+- [Spinning Up in Deep RL (OpenAI)](https://spinningup.openai.com/en/latest/)
+- [RL Baselines3 Zoo - For reference implementations (Note: uses different structure)](https://stable-baselines3.readthedocs.io/en/master/guide/rl_zoo.html)
+- [Reinforcement Learning Overview by Kevin Murphy](https://arxiv.org/pdf/2412.05265)
+- Original research papers for specific algorithms (DQN, PPO, DPO....)
