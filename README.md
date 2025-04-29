@@ -13,7 +13,7 @@ RLab is a repository dedicated to exploring, understanding, and implementing var
 * Offer a modular structure that can be extended for custom agents, environments, and projects.
 
 
-### **Implemented Algorithms**
+### ✅**Implemented Algorithms**
 * **Value-Based:**
     * Q-Learning
     * SARSA
@@ -26,7 +26,7 @@ RLab is a repository dedicated to exploring, understanding, and implementing var
 * **Preference-Based:**
     * Direct Preference Optimization (DPO)
 
-### **Key Components**
+### ✅**Key Components**
 * **Algorithm Implementations:** Clear implementations of foundational and widely-used RL algorithms.
 * **Custom Environments:** Example environments (Gridworld, simple continuous tasks) for testing and development.
 * **Example Scripts:** Ready-to-run examples demonstrating how to train agents in standard environments (e.g., CartPole) or with specific techniques (e.g., preference learning).
