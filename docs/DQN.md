@@ -16,7 +16,7 @@ $$
 These target Q-values are used in the loss calculation. This approach adds stability compared to using the constantly changing `policy_net` for targets.
 
 ## Mathematical Formulation
-The loss function aims to minimize the difference between the predicted Q-value and the target Q-value (Temporal Difference error), typically using Mean Squared Error (MSE) or Huber loss. 
+The loss function aims to minimize the difference between the predicted Q-value and the target Q-value (Temporal Difference error), typically using Mean Squared Error (MSE) or Huber loss.
 
 $$
 \text{Loss} = \Big( 
