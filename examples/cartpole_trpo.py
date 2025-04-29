@@ -109,5 +109,5 @@ for episode in range(num_episodes):
 
 print("Training completed!")
 
-# 4. save Policy
+# save Policy
 torch.save(policy_net.state_dict(), "trpo_cartpole.pth")
