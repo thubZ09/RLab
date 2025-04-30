@@ -1,36 +1,36 @@
-## Deep Q-Network (DQN)
+# DQN  
+**Category** - *Value-Based, Off-Policy*  
 
-### Category - **Value-Based, Off-Policy**
+## Core Concept  
+- Extends Q-Learning to large/continuous state spaces using a **neural network** to approximate $Q(s,a)$.  
+- **Key techniques**:  
+  - **Experience Replay**: Stores transitions $(s,a,r,s',\text{done})$ in a buffer and samples mini-batches.  
+  - **Target Network**: Frozen network $Q_{\text{target}}$ computes stable targets:  
+    $$
+    y_t = r + \gamma (1 - \text{done}) \max_{a'} Q_{\text{target}}(s',a')
+    $$  
 
-## Core Concept
- Extends Q-Learning to handle large/continuous state spaces (like pixels from a screen) by approximating the Q-function Q(s,a) using a neural network (the QNetwork). Uses two key techniques:
-- **Experience Replay**: Stores past transitions (state, action, reward, next_state, done) in a `ReplayBuffer`. During learning, it samples random mini-batches from this buffer. This breaks correlations between consecutive samples and reuses data efficiently.
-- **Target Network**: A separate `target_net` is used, whose weights are frozen for several steps and periodically updated with the `policy_net` weights. 
+## Mathematical Formulation  
+- **Loss Function**:  
+  $$
+  \mathcal{L}(\theta) = \mathbb{E}\left[ \left( y_t - Q_{\text{policy}}(s,a;\theta) \right)^2 \right]
+  $$  
+  - $y_t$: TD target computed using $Q_{\text{target}}$.  
 
-The `target_net` calculates the target Q-values:
+## When & Where to Use  
+- **Use cases**:  
+  - High-dimensional states (e.g., Atari games from pixels).  
+  - Discrete action spaces.  
+- **Limitations**:  
+  - Cannot handle continuous actions directly.  
+  - Overestimates Q-values (addressed by Double DQN).  
 
-$$
-r + \gamma \max_{a'} Q_{\text{target}}(s', a')
-$$
-
-These target Q-values are used in the loss calculation. This approach adds stability compared to using the constantly changing `policy_net` for targets.
-
-## Mathematical Formulation
-The loss function aims to minimize the difference between the predicted Q-value and the target Q-value (Temporal Difference error), typically using Mean Squared Error (MSE) or Huber loss.
-
-$$
-\text{Loss} = \Big( 
-\underbrace{\text{TD Target}}_{\text{r} + \gamma \max_{a'} Q_{\text{target}}(s', a')}
-- 
-\underbrace{\text{Predicted Q}}_{Q_{\text{policy}}(s, a)}
-\Big)^2
-$$
-
-## When & Where to Use
-- Problems with large, discrete action spaces and large/continuous state spaces (e.g., Atari games from pixels).
-- Can suffer from overestimation of Q-values (addressed by Double DQN).
-- When sample efficiency is important (due to experience replay).
-- Doesn't directly handle continuous action spaces.
-
-## Implementation Notes
-The `DQNAgent` class manages the policy and target networks, the replay buffer, and the epsilon-greedy exploration strategy.   The `learn` method samples a batch, calculates predicted and target Q-values, computes the loss, and performs gradient descent.
+## Implementation Notes  
+- **Key components**:  
+  - `DQNAgent` class with `policy_net`, `target_net`, and `ReplayBuffer`.  
+  - Use CNNs for images, MLPs for low-dimensional states.  
+- **Hyperparameters**:  
+  - Batch size (32–64), replay buffer size (1e5), target update interval (100–1000 steps).  
+- **Optimization**:  
+  - Use Huber loss for robustness.  
+  - Decay ε from 1.0 to 0.1.  
