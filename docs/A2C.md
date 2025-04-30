@@ -5,20 +5,13 @@
 - Combines policy gradient (actor) and value estimation (critic) for lower variance.  
 - **Key techniques**:  
   - **Advantage Function**:  
-$$
-A(s, a) = Q(s, a) - V(s)
-$$
+$$ A(s, a) = Q(s, a) - V(s) $$  
   - **Entropy Regularization**: Encourages exploration by adding entropy to the loss.  
 
 ## Mathematical Formulation  
 - **Loss Function**:  
 $$
-\mathcal{L} = 
-\underbrace{\mathbb{E}[\log \pi_\theta(a \mid s) A(s, a)]}_{\text{Actor}} 
-+ 
-\underbrace{\beta \mathbb{E}[(V(s) - G_t)^2]}_{\text{Critic}} 
-- 
-\underbrace{\lambda H(\pi)}_{\text{Entropy Regularization}}
+\mathcal{L} = \underbrace{\mathbb{E}[\log \pi_\theta(a \mid s) A(s, a)]}_{\text{Actor}} + \underbrace{\beta \mathbb{E}[(V(s) - G_t)^2]}_{\text{Critic}} - \underbrace{\lambda H(\pi)}_{\text{Entropy Regularization}}
 $$
 
 ## When & Where to Use  
