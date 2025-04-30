@@ -3,7 +3,7 @@
 [![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?logo=PyTorch&logoColor=white)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-RLab is a repository dedicated to exploring, understanding, and implementing various reinforcement learning algorithms in PyTorch. It provides clear, concise implementations suitable for educational purposes, experimentation, and as a foundation for further research in RL.
+RLab is a repository dedicated to exploring, understanding, and implementing various reinforcement learning algorithms in PyTorch. It provides clear, concise implementations suitable for educational purposes and experimentations.
 
 ## 📌Goals
 
