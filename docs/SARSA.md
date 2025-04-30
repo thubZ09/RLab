@@ -1,34 +1,19 @@
 # SARSA  
-**Category** - *Value-Based, On-Policy*  
+**Type**: *Value-Based, On-Policy*  
 
-## Core Concept  
-- **Model-free** algorithm that learns Q-values using the **actual policy** (on-policy).  
-- **Key techniques**:  
-  - **TD Update with Current Policy**:  
-    $$
-    Q(s,a) \leftarrow Q(s,a) + \alpha \left[ r + \gamma Q(s',a') - Q(s,a) \right]
-    $$  
-    where $a'$ is selected using the current policy (e.g., ε-greedy).  
+## What It Is  
+SARSA is a Q-learning variant that learns action values based on the agent’s actual behavior (not hypothetical best actions). It stands for State-Action-Reward-State-Action.
 
-## Mathematical Formulation  
-- **Q-Value Update**:  
-  $$
-  Q(s,a) \leftarrow Q(s,a) + \alpha \left[ \underbrace{r + \gamma Q(s',a')}_{\text{TD Target}} - Q(s,a) \right]
-  $$  
-  - $a'$: Action taken in state $s'$ (unlike Q-Learning’s $\max$).  
+## How It Works  
+- **On-Policy Updates**:  
+  Updates Q-values using actions the agent actually took, not the best possible ones.  
+  `New Q-value = Old Q-value + Learning Rate * (Reward + Discount Factor * Next Action's Q-value - Old Q-value)`  
+- **Safer Exploration**: Since it uses real actions, it avoids risky moves that Q-learning might suggest.  
 
-## When & Where to Use  
-- **Use cases**:  
-  - Safety-critical environments (e.g., robotics).  
-  - Stochastic environments where exploration matters.  
-- **Limitations**:  
-  - Requires on-policy data → less sample-efficient than off-policy methods.  
+## When to Use It  
+- Environments where exploration matters (e.g., robotics).  
+- Stochastic (random) environments where outcomes are uncertain.  
 
-## Implementation Notes  
-- **Key components**:  
-  - `SARSAAgent` class tracks current policy (e.g., ε-greedy).  
-  - Store transitions $(s,a,r,s',a')$ in a buffer.  
-- **Hyperparameters**:  
-  - Same as Q-Learning (α, γ, ε).  
-- **Optimization**:  
-  - Use ε-greedy during training (not decayed).  
+## Key Ideas  
+- **On-Policy**: Learns from the same policy it uses to act.  
+- **Safer**: Avoids overestimating rewards because it uses real next actions.  

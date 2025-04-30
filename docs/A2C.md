@@ -1,31 +1,20 @@
-# A2C  
-**Category** - *Policy Gradient, On-Policy, Actor-Critic*  
+# Advantage Actor-Critic (A2C)  
+**Type**: *Policy Gradient, On-Policy*  
 
-## Core Concept  
-- Combines policy gradient (actor) and value estimation (critic) for lower variance.  
-- **Key techniques**:  
-  - **Advantage Function**:  
-$$ A(s, a) = Q(s, a) - V(s) $$  
-  - **Entropy Regularization**: Encourages exploration by adding entropy to the loss.  
+## What It Is  
+A2C combines policy gradient (Actor) and value estimation (Critic) to reduce variance. The Actor chooses actions, and the Critic evaluates how good those actions are.
 
-## Mathematical Formulation  
-- **Loss Function**:  
-$$
-\mathcal{L} = \underbrace{\mathbb{E}[\log \pi_\theta(a \mid s) A(s, a)]}_{\text{Actor}} + \underbrace{\beta \mathbb{E}[(V(s) - G_t)^2]}_{\text{Critic}} - \underbrace{\lambda H(\pi)}_{\text{Entropy Regularization}}
-$$
+## How It Works  
+- **Actor-Critic Framework**:  
+  - **Actor**: Learns the policy (which actions to take).  
+  - **Critic**: Learns to estimate state values (how good a state is).  
+- **Advantage Function**: Measures how much better an action is compared to the average action in that state.  
+- **Entropy Regularization**: Encourages exploration by penalizing overly confident policies.  
 
-## When & Where to Use  
-- **Use cases**:  
-  - Continuous control (e.g., MuJoCo, Pendulum).  
-  - Parallelizable environments (synchronous A2C).  
-- **Limitations**:  
-  - Sensitive to hyperparameters (learning rate, entropy weight).  
+## When to Use It  
+- Continuous control tasks (e.g., robotic arm movement).  
+- Environments where you need stable and fast learning.  
 
-## Implementation Notes  
-- **Key components**:  
-  - `A2CAgent` with shared actor-critic network (or separate).  
-  - Use GAE for advantage estimation.  
-- **Hyperparameters**:  
-  - Actor LR ($5e-4$), critic LR ($1e-3$), $\gamma = 0.99$.  
-- **Optimization**:  
-  - Normalize advantages: $A \leftarrow (A - \mu)/\sigma$.  
+## Key Ideas  
+- **Actor-Critic**: Two networks work together for faster learning.  
+- **Advantage**: Focuses on actions that outperform the average.  

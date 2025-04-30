@@ -1,34 +1,18 @@
 # REINFORCE  
-**Category** - *Policy Gradient, On-Policy*  
+**Type**: *Policy Gradient, On-Policy*  
 
-## Core Concept  
-- **Policy gradient** method that optimizes the policy $\pi_\theta(a|s)$ directly via Monte Carlo returns.  
-- **Key techniques**:  
-  - **Baseline Subtraction**: Reduces variance by subtracting a state-dependent baseline $b(s)$.  
-  - **Softmax Policy**: Used for discrete actions:  
-    $$
-    \pi_\theta(a|s) = \frac{e^{f_\theta(s,a)}}{\sum_{a'} e^{f_\theta(s,a')}}
-    $$  
+## What It Is  
+REINFORCE directly learns a policy (a strategy for choosing actions) by adjusting the parameters of a neural network to maximize rewards.
 
-## Mathematical Formulation  
-- **Policy Gradient**:  
-  $$
-  \nabla J(\theta) = \mathbb{E}\left[ \sum_{t=0}^T G_t \nabla_\theta \log \pi_\theta(a_t|s_t) \right]
-  $$  
-  - $G_t$: Cumulative return from timestep $t$.  
+## How It Works  
+- **Policy Gradient**: Updates the policy in the direction that increases expected rewards.  
+- **Monte Carlo Updates**: Waits until the end of an episode to update the policy based on total rewards.  
+- **Baseline Subtraction**: Reduces variance by subtracting a baseline value (e.g., average reward) from returns.  
 
-## When & Where to Use  
-- **Use cases**:  
-  - Episodic tasks (e.g., CartPole, Acrobot).  
-  - Discrete/continuous actions (via Gaussian policies).  
-- **Limitations**:  
-  - High variance → requires many samples per update.  
+## When to Use It  
+- Episodic tasks (e.g., CartPole, Acrobot).  
+- Problems where you need a stochastic policy (e.g., poker).  
 
-## Implementation Notes  
-- **Key components**:  
-  - `REINFORCEAgent` with policy network and baseline/value network (optional).  
-  - Use `Gymnasium`’s `Episode` wrapper for return computation.  
-- **Hyperparameters**:  
-  - Learning rate ($1e-3$), entropy coefficient ($0.01$).  
-- **Optimization**:  
-  - Normalize returns: $G_t \leftarrow (G_t - \mu)/\sigma$.  
+## Key Ideas  
+- **Policy Optimization**: Learns a direct mapping from states to actions.  
+- **High Variance**: Needs many episodes to converge.  

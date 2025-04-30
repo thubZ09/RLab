@@ -1,36 +1,18 @@
-# DQN  
-**Category** - *Value-Based, Off-Policy*  
+# Deep Q-Network (DQN)  
+**Type**: *Value-Based, Off-Policy*  
 
-## Core Concept  
-- Extends Q-Learning to large/continuous state spaces using a **neural network** to approximate $Q(s,a)$.  
-- **Key techniques**:  
-  - **Experience Replay**: Stores transitions $(s,a,r,s',\text{done})$ in a buffer and samples mini-batches.  
-  - **Target Network**: Frozen network $Q_{\text{target}}$ computes stable targets:  
-    $$
-    y_t = r + \gamma (1 - \text{done}) \max_{a'} Q_{\text{target}}(s',a')
-    $$  
+## What It Is  
+DQN combines Q-learning with deep neural networks to handle complex environments (e.g., video games). Instead of a Q-table, it uses a neural network to approximate Q-values.
 
-## Mathematical Formulation  
-- **Loss Function**:  
-  $$
-  \mathcal{L}(\theta) = \mathbb{E}\left[ \left( y_t - Q_{\text{policy}}(s,a;\theta) \right)^2 \right]
-  $$  
-  - $y_t$: TD target computed using $Q_{\text{target}}$.  
+## How It Works  
+- **Experience Replay**: Stores past experiences (state, action, reward, next state) and randomly samples them during training to break correlations.  
+- **Target Network**: A separate network to stabilize learning (prevents feedback loops).  
+- **Epsilon-Greedy Strategy**: Balances exploration (random actions) and exploitation (best-known actions).  
 
-## When & Where to Use  
-- **Use cases**:  
-  - High-dimensional states (e.g., Atari games from pixels).  
-  - Discrete action spaces.  
-- **Limitations**:  
-  - Cannot handle continuous actions directly.  
-  - Overestimates Q-values (addressed by Double DQN).  
+## When to Use It  
+- High-dimensional inputs (e.g., pixels from a game screen).  
+- Discrete action spaces (e.g., joystick directions).  
 
-## Implementation Notes  
-- **Key components**:  
-  - `DQNAgent` class with `policy_net`, `target_net`, and `ReplayBuffer`.  
-  - Use CNNs for images, MLPs for low-dimensional states.  
-- **Hyperparameters**:  
-  - Batch size (32–64), replay buffer size (1e5), target update interval (100–1000 steps).  
-- **Optimization**:  
-  - Use Huber loss for robustness.  
-  - Decay ε from 1.0 to 0.1.  
+## Key Ideas  
+- **Deep Learning + Q-Learning**: Neural network replaces the Q-table.  
+- **Stable Training**: Experience replay and target networks prevent divergence.  
